@@ -108,3 +108,10 @@ body {
   .animate-float-device, .animate-pulse-orb,
   .animate-chip-1, .animate-chip-2, .animate-chip-3 { animation: none; }
 }
+@keyframes slowRotate {
+  0% { transform: perspective(1200px) rotateY(-8deg) rotateX(3deg); }
+  25% { transform: perspective(1200px) rotateY(0deg) rotateX(0deg); }
+  50% { transform: perspective(1200px) rotateY(8deg) rotateX(-3deg); }
+  75% { transform: perspective(1200px) rotateY(0deg) rotateX(0deg); }
+  100% { transform: perspective(1200px) rotateY(-8deg) rotateX(3deg); }
+}
