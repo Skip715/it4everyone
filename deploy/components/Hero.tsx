@@ -1,10 +1,4 @@
-@keyframes slowRotate {
-  0% { transform: perspective(1200px) rotateY(-8deg) rotateX(3deg); }
-  25% { transform: perspective(1200px) rotateY(0deg) rotateX(0deg); }
-  50% { transform: perspective(1200px) rotateY(8deg) rotateX(-3deg); }
-  75% { transform: perspective(1200px) rotateY(0deg) rotateX(0deg); }
-  100% { transform: perspective(1200px) rotateY(-8deg) rotateX(3deg); }
-}'use client'
+'use client'
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
@@ -12,19 +6,16 @@ import Image from 'next/image'
 
 const slides = [
   {
-    category: 'Dell Latitude Series',
     headline: 'Enterprise hardware,',
     headline2: 'any scale.',
     sub: 'Dell, HP, Lenovo and more — sourced, procured and delivered with dedicated account management. From a single device to a full enterprise rollout.',
   },
   {
-    category: 'HP & Lenovo Business',
     headline: 'The right hardware,',
     headline2: 'right now.',
     sub: 'Independent and impartial — we recommend exactly what fits your business goals, with flexible leasing and subscription options available.',
   },
   {
-    category: 'Enterprise Solutions',
     headline: 'Servers, storage,',
     headline2: 'sorted.',
     sub: 'From entry-level rack servers to full data centre deployments — procured, delivered and installed across the UK with expert support.',
@@ -47,38 +38,25 @@ export default function Hero() {
 
   return (
     <section className="relative overflow-hidden" style={{ background: '#0A1628', minHeight: '520px' }}>
-      {/* Hero laptop image — right side */}
       <div className="absolute right-0 top-0 bottom-0 w-[55%] overflow-hidden">
         <Image
-          <Image
-  src="/hero-laptop.png"
-  alt="Enterprise Dell laptops"
-  fill
-  className="object-cover object-center"
-  priority
-  style={{ 
-    opacity: 0.85,
-    animation: 'slowRotate 20s linear infinite',
-    transformOrigin: 'center center'
-  }}
-/>
+          src="/hero-laptop.png"
+          alt="Enterprise Dell laptops"
+          fill
+          className="object-cover object-center"
+          priority
+          style={{ opacity: 0.85 }}
         />
-        {/* Gradient fade left */}
         <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, #0A1628 0%, #0A1628 10%, rgba(10,22,40,0.7) 40%, transparent 100%)' }} />
       </div>
 
-      {/* Subtle grid */}
       <div className="absolute inset-0 hero-grid opacity-[0.04]" aria-hidden="true" />
 
-  }
-`}</style>
-      {/* Content */}
       <div className="relative z-10 px-10 py-20 max-w-[580px]">
         <div
           className="inline-flex items-center gap-2 border px-3.5 py-1.5 rounded-full mb-5 text-[10.5px] font-bold tracking-[1.5px] uppercase"
           style={{ borderColor: 'rgba(91,164,212,0.4)', color: '#8EBADF' }}
         >
-          <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
           UK Independent B2B IT Distributor
         </div>
 
@@ -106,7 +84,6 @@ export default function Hero() {
           </Link>
         </div>
 
-        {/* Stats */}
         <div className="flex gap-7">
           {[
             { num: '2020', label: 'Founded' },
@@ -125,7 +102,6 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Slide dots */}
       <div className="absolute bottom-6 left-10 flex gap-2 z-10">
         {slides.map((_, i) => (
           <button
@@ -139,4 +115,11 @@ export default function Hero() {
       </div>
     </section>
   )
+}
+@keyframes slowRotate {
+  0% { transform: perspective(1200px) rotateY(-8deg) rotateX(3deg); }
+  25% { transform: perspective(1200px) rotateY(0deg) rotateX(0deg); }
+  50% { transform: perspective(1200px) rotateY(8deg) rotateX(-3deg); }
+  75% { transform: perspective(1200px) rotateY(0deg) rotateX(0deg); }
+  100% { transform: perspective(1200px) rotateY(-8deg) rotateX(3deg); }
 }
