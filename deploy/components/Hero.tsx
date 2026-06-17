@@ -1,4 +1,10 @@
-'use client'
+@keyframes slowRotate {
+  0% { transform: perspective(1200px) rotateY(-8deg) rotateX(3deg); }
+  25% { transform: perspective(1200px) rotateY(0deg) rotateX(0deg); }
+  50% { transform: perspective(1200px) rotateY(8deg) rotateX(-3deg); }
+  75% { transform: perspective(1200px) rotateY(0deg) rotateX(0deg); }
+  100% { transform: perspective(1200px) rotateY(-8deg) rotateX(3deg); }
+}'use client'
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
