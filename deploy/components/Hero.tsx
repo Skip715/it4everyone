@@ -44,12 +44,18 @@ export default function Hero() {
       {/* Hero laptop image — right side */}
       <div className="absolute right-0 top-0 bottom-0 w-[55%] overflow-hidden">
         <Image
-          src="/hero-laptop.png"
-          alt="Enterprise Dell laptops"
-          fill
-          className="object-cover object-center"
-          priority
-          style={{ opacity: 0.85 }}
+          <Image
+  src="/hero-laptop.png"
+  alt="Enterprise Dell laptops"
+  fill
+  className="object-cover object-center"
+  priority
+  style={{ 
+    opacity: 0.85,
+    animation: 'slowRotate 20s linear infinite',
+    transformOrigin: 'center center'
+  }}
+/>
         />
         {/* Gradient fade left */}
         <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, #0A1628 0%, #0A1628 10%, rgba(10,22,40,0.7) 40%, transparent 100%)' }} />
@@ -57,7 +63,15 @@ export default function Hero() {
 
       {/* Subtle grid */}
       <div className="absolute inset-0 hero-grid opacity-[0.04]" aria-hidden="true" />
-
+<style>{`
+  @keyframes slowRotate {
+    0% { transform: perspective(1200px) rotateY(-8deg) rotateX(3deg); }
+    25% { transform: perspective(1200px) rotateY(0deg) rotateX(0deg); }
+    50% { transform: perspective(1200px) rotateY(8deg) rotateX(-3deg); }
+    75% { transform: perspective(1200px) rotateY(0deg) rotateX(0deg); }
+    100% { transform: perspective(1200px) rotateY(-8deg) rotateX(3deg); }
+  }
+`}</style>
       {/* Content */}
       <div className="relative z-10 px-10 py-20 max-w-[580px]">
         <div
