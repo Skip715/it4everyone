@@ -13,7 +13,7 @@ export default function Logo() {
       <rect x="20" y="16" width="18" height="4" rx="2" fill="#0D2B5E" opacity="0.85"/>
       <rect x="26.5" y="20" width="5" height="15" rx="2" fill="#0D2B5E" opacity="0.85"/>
       <text x="60" y="22" fontFamily="Segoe UI,system-ui,sans-serif" fontWeight="800" fontSize="17" fill="#0D2B5E" letterSpacing="0.3">IT</text>
-      <text x="87" y="22" fontFamily="Segoe UI,system-ui,sans-serif" fontWeight="800" fontSize="17" fill="#1976D2" letterSpacing="0.3">4</text>
+      <text x="98" y="22" fontFamily="Segoe UI,system-ui,sans-serif" fontWeight="800" fontSize="17" fill="#1976D2" letterSpacing="0.3">4</text>
       <text x="98" y="22" fontFamily="Segoe UI,system-ui,sans-serif" fontWeight="800" fontSize="17" fill="#0D2B5E" letterSpacing="0.3">EVERYONE</text>
       <text x="60" y="36" fontFamily="Segoe UI,system-ui,sans-serif" fontWeight="500" fontSize="9" fill="#5BA4D4" letterSpacing="2.5">YOUR DELL SPECIALIST · LTD</text>
     </svg>
