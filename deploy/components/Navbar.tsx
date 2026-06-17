@@ -45,7 +45,7 @@ export default function Navbar() {
       {/* Main nav */}
       <nav className="bg-white px-10 h-[76px] flex items-center justify-between" style={{ borderBottom: '2px solid #EEF2F7', boxShadow: '0 2px 12px rgba(13,43,94,0.08)' }}>
         <Link href="/" aria-label="IT4Everyone home">
-          <Logo size={48} />
+          <Logo />
         </Link>
 
         <div className="flex h-[76px]">
