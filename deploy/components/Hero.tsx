@@ -63,13 +63,7 @@ export default function Hero() {
 
       {/* Subtle grid */}
       <div className="absolute inset-0 hero-grid opacity-[0.04]" aria-hidden="true" />
-<style>{`
-  @keyframes slowRotate {
-    0% { transform: perspective(1200px) rotateY(-8deg) rotateX(3deg); }
-    25% { transform: perspective(1200px) rotateY(0deg) rotateX(0deg); }
-    50% { transform: perspective(1200px) rotateY(8deg) rotateX(-3deg); }
-    75% { transform: perspective(1200px) rotateY(0deg) rotateX(0deg); }
-    100% { transform: perspective(1200px) rotateY(-8deg) rotateX(3deg); }
+
   }
 `}</style>
       {/* Content */}
