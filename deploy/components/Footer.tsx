@@ -1,22 +1,13 @@
 import Link from 'next/link'
+import Logo from './Logo'
 
 export default function Footer() {
   return (
     <footer style={{ background: '#050E22' }}>
       <div className="px-10 py-12 grid grid-cols-4 gap-8">
         <div className="col-span-1">
-          {/* SVG Logo — matches navbar exactly */}
-          <div className="flex items-center gap-3 mb-4">
-            <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect width="44" height="44" rx="5" fill="#1565C0"/>
-              <rect x="3.5" y="3.5" width="37" height="37" rx="3" fill="none" stroke="white" strokeWidth="1.2"/>
-              <rect x="6" y="6" width="32" height="32" rx="2" fill="none" stroke="white" strokeWidth="0.6"/>
-              <text x="22" y="31" textAnchor="middle" fill="white" fontFamily="Georgia,serif" fontSize="22" fontWeight="700">I</text>
-            </svg>
-            <div className="flex flex-col leading-tight">
-              <span style={{ fontSize: '13px', fontWeight: 700, color: '#fff', letterSpacing: '0.5px' }}>IT4EVERYONE LTD</span>
-              <span style={{ fontSize: '9px', letterSpacing: '2px', color: '#5BA4D4', textTransform: 'uppercase' }}>YOUR DELL SPECIALIST</span>
-            </div>
+          <div className="mb-4">
+            <Logo />
           </div>
           <p className="text-[13px] leading-[1.7] mt-2" style={{ color: '#546E7A' }}>
             UK independent B2B IT distributor. Dell, HP, Lenovo and more — delivered nationwide with dedicated account management.
