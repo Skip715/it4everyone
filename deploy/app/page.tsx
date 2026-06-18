@@ -1,6 +1,5 @@
 import Hero from '@/components/Hero'
 import { TrustBar, BrandsBar } from '@/components/TrustBar'
-import CategoryTiles from '@/components/CategoryTiles'
 import ProductGrid from '@/components/ProductGrid'
 import ServicesSection from '@/components/ServicesSection'
 import B2BSection from '@/components/B2BSection'
@@ -13,7 +12,6 @@ export default function Home() {
       <Hero />
       <TrustBar />
       <BrandsBar />
-      <CategoryTiles />
       <ProductGrid />
       <ServicesSection />
       <WhyUsSection />
