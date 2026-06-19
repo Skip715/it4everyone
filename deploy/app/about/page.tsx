@@ -10,9 +10,9 @@ export default function AboutPage() {
         </div>
         <div className="relative z-10">
           <p className="text-[11px] font-bold tracking-[1.5px] uppercase mb-2" style={{ color: '#5BA4D4' }}>Our story</p>
-          <h1 className="text-[36px] font-extrabold text-white mb-3">About IT4Everyone</h1>
+          <h1 className="text-[36px] font-extrabold text-white mb-3">About IT<span style={{ color: '#2196F3' }}>4</span>Everyone</h1>
           <p className="text-[15px] max-w-lg leading-[1.75]" style={{ color: '#8EBADF' }}>
-            UK independent B2B IT distributor — founded in 2020, built on agility, impartiality and genuine customer service.
+            UK independent B2B IT stockist — founded in 2020, built on agility, impartiality and genuine customer service.
           </p>
         </div>
       </div>
@@ -22,10 +22,10 @@ export default function AboutPage() {
           <p className="text-[11px] font-bold tracking-[1.5px] uppercase mb-2" style={{ color: '#1976D2' }}>Who we are</p>
           <h2 className="text-[22px] font-extrabold mb-4" style={{ color: '#0D2B5E' }}>Independent, impartial, invested in you</h2>
           <p className="text-[14px] leading-[1.8] mb-4" style={{ color: '#546E7A' }}>
-            IT4Everyone Ltd is an independent UK-based IT distributor founded by Stephen Raper in 2020. We specialise in sourcing and supplying reliable hardware and technology solutions to businesses across multiple industries.
+            IT4Everyone Ltd is an independent UK-based IT stockist founded in 2020. We specialise in sourcing and supplying reliable hardware and technology solutions to businesses across multiple industries.
           </p>
           <p className="text-[14px] leading-[1.8]" style={{ color: '#546E7A' }}>
-            As an independent distributor, we pride ourselves on agility, customised service, and strong vendor relationships. Due to rapid growth, Christopher Reeves joined the board in 2023.
+            As an independent stockist, we pride ourselves on agility, customised service, and strong vendor relationships — delivering the right technology at the right price for every client.
           </p>
         </div>
         <div className="relative h-[320px] rounded-xl overflow-hidden">
@@ -35,7 +35,7 @@ export default function AboutPage() {
 
       <div className="px-10 py-14">
         <p className="text-[11px] font-bold tracking-[1.5px] uppercase mb-2" style={{ color: '#1976D2' }}>Why choose us</p>
-        <h2 className="text-[22px] font-extrabold mb-7" style={{ color: '#0D2B5E' }}>Why IT4Everyone?</h2>
+        <h2 className="text-[22px] font-extrabold mb-7" style={{ color: '#0D2B5E' }}>Why IT<span style={{ color: '#2196F3' }}>4</span>Everyone?</h2>
         <div className="grid grid-cols-2 gap-4 max-w-3xl">
           {[
             { title: 'Independent & impartial', body: 'Not tied to a single manufacturer. We recommend exactly what fits your goals.' },
