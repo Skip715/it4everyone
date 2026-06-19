@@ -10,12 +10,12 @@ export default function Footer() {
             <Logo />
           </div>
           <p className="text-[13px] leading-[1.7] mt-2" style={{ color: '#546E7A' }}>
-            UK independent B2B IT distributor. Dell, HP, Lenovo and more — delivered nationwide with dedicated account management.
+            UK independent B2B IT stockist. Dell, HP, Lenovo and more — delivered nationwide with dedicated account management.
           </p>
           <div className="mt-4 flex flex-col gap-1.5">
             <a href="tel:01296816012" className="text-[12px] hover:text-sky-400 transition-colors" style={{ color: '#546E7A' }}>📞 01296 816012</a>
             <a href="tel:07518577981" className="text-[12px] hover:text-sky-400 transition-colors" style={{ color: '#546E7A' }}>📱 07518 577981</a>
-            <a href="mailto:sraper@it4eo.co.uk" className="text-[12px] hover:text-sky-400 transition-colors" style={{ color: '#546E7A' }}>✉️ sraper@it4eo.co.uk</a>
+            <a href="mailto:info@it4evo.co.uk" className="text-[12px] hover:text-sky-400 transition-colors" style={{ color: '#546E7A' }}>✉️ info@it4evo.co.uk</a>
           </div>
         </div>
         <div>
