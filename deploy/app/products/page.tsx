@@ -1,5 +1,4 @@
 import ProductGrid from '@/components/ProductGrid'
-import CategoryTiles from '@/components/CategoryTiles'
 
 export default function ProductsPage() {
   return (
@@ -11,7 +10,6 @@ export default function ProductsPage() {
           Dell, HP, Lenovo and more — sourced directly, quality-checked and delivered UK-wide with dedicated account support.
         </p>
       </div>
-      <CategoryTiles />
       <ProductGrid />
     </>
   )
