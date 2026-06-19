@@ -15,7 +15,7 @@ export default function ContactSection() {
       await fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
       setSent(true)
     } catch {
-      alert('Something went wrong. Please email sraper@it4eo.co.uk directly.')
+      alert('Something went wrong. Please email info@it4evo.co.uk directly.')
     } finally {
       setLoading(false)
     }
@@ -28,7 +28,6 @@ export default function ContactSection() {
         <h2 className="text-[26px] font-extrabold text-navy">Request a tailored proposal</h2>
       </div>
       <div className="grid grid-cols-[1fr_1.5fr] gap-12">
-        {/* Info */}
         <div className="flex flex-col gap-5">
           <p className="text-[14px] text-slate-500 leading-[1.75]">
             Tell us about your technology roadmap and we&apos;ll prepare a fully customised procurement proposal — from a single device to a full enterprise rollout.
@@ -36,7 +35,7 @@ export default function ContactSection() {
           {[
             { label: 'Address', value: 'Regus The Gatehouse, Gatehouse Way, Aylesbury, Buckinghamshire', icon: '📍' },
             { label: 'Phone', value: '01296 816012 · 07518 577981', icon: '📞' },
-            { label: 'Email', value: 'sraper@it4eo.co.uk', icon: '✉️' },
+            { label: 'Email', value: 'info@it4evo.co.uk', icon: '✉️' },
             { label: 'Website', value: 'www.it4eo.co.uk', icon: '🌐' },
           ].map(({ label, value, icon }) => (
             <div key={label} className="flex gap-3.5 items-start">
@@ -49,7 +48,6 @@ export default function ContactSection() {
           ))}
         </div>
 
-        {/* Form */}
         {sent ? (
           <div className="flex items-center justify-center">
             <div className="text-center">
