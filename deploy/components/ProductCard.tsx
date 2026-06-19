@@ -21,10 +21,10 @@ const brandColors: Record<string, string> = {
   Lenovo: 'text-blue-mid',
 }
 
-const badgeStyles: Record<string, string> = {
-  new: 'bg-green-50 text-green-800',
-  sale: 'bg-orange-50 text-orange-700',
-  b2b: 'bg-purple-50 text-purple-800',
+const badgeStyles: Record<string, { bg: string; text: string }> = {
+  new: { bg: '#E8F5E9', text: '#2E7D32' },
+  sale: { bg: '#FFF3E0', text: '#E65100' },
+  b2b: { bg: '#EDE7F6', text: '#4527A0' },
 }
 
 const productIcons: Record<string, string> = {
@@ -36,39 +36,36 @@ const productIcons: Record<string, string> = {
 
 export default function ProductCard({ product }: { product: Product }) {
   const { addItem } = useCart()
+  const badge = badgeStyles[product.badge]
 
   return (
-    <div className="product-card bg-white border border-gray-200 rounded-xl overflow-hidden flex flex-col transition-all duration-150 cursor-pointer">
+    <div className="group bg-white rounded-2xl overflow-hidden flex flex-col transition-all duration-200 hover:-translate-y-1" style={{ border: '1px solid #E8EDF5', boxShadow: '0 2px 8px rgba(13,43,94,0.06)' }}>
       <Link href={`/products/${product.id}`} className="block">
         {/* Image area */}
-        <div className="h-[148px] bg-pale flex items-center justify-center relative flex-shrink-0">
-          {product.badge && (
-            <div className={`absolute top-2.5 left-2.5 text-[10px] font-bold px-2.5 py-1 rounded-xl uppercase tracking-[0.4px] ${badgeStyles[product.badge] || ''}`}>
+        <div className="h-[180px] flex items-center justify-center relative flex-shrink-0" style={{ background: 'linear-gradient(135deg, #F0F4FA 0%, #E8EDF5 100%)' }}>
+          {product.badge && badge && (
+            <div className="absolute top-3 left-3 text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-[0.5px]" style={{ background: badge.bg, color: badge.text }}>
               {product.badge === 'b2b' ? 'B2B' : product.badge.charAt(0).toUpperCase() + product.badge.slice(1)}
             </div>
           )}
-          {/* Placeholder — swap for <Image> when product photos are uploaded */}
-          <div className="text-[60px] select-none opacity-60">
+          <div className="text-[64px] select-none transition-transform duration-200 group-hover:scale-110">
             {productIcons[product.category] || '📦'}
-          </div>
-          <div className="absolute bottom-2 right-2 text-[10px] text-sky font-semibold opacity-60">
-            [Add product image]
           </div>
         </div>
       </Link>
 
-      <div className="p-4 flex flex-col flex-1">
+      <div className="p-5 flex flex-col flex-1">
         <Link href={`/products/${product.id}`} className="block flex-1">
-          <p className={`text-[10px] font-bold uppercase tracking-[1.2px] mb-1 ${brandColors[product.brand] || 'text-blue-mid'}`}>
+          <p className="text-[10px] font-bold uppercase tracking-[1.5px] mb-1.5" style={{ color: '#1976D2' }}>
             {product.brand}
           </p>
-          <h3 className="text-[13.5px] font-bold text-navy mb-1.5 leading-[1.3]">{product.name}</h3>
-          <p className="text-[11.5px] text-gray-400 leading-[1.55] mb-3">{product.spec}</p>
+          <h3 className="text-[14px] font-bold mb-1.5 leading-[1.3]" style={{ color: '#0D2B5E' }}>{product.name}</h3>
+          <p className="text-[12px] leading-[1.6] mb-4" style={{ color: '#78909C' }}>{product.spec}</p>
         </Link>
-        <div className="flex justify-between items-center mt-auto">
+        <div className="flex justify-between items-center mt-auto pt-4" style={{ borderTop: '1px solid #EEF2F7' }}>
           <div>
-            <div className="text-[17px] font-extrabold text-navy">£{product.price.toLocaleString()}</div>
-            <span className="text-[10px] text-gray-400">+VAT</span>
+            <div className="text-[20px] font-extrabold" style={{ color: '#0D2B5E' }}>£{product.price.toLocaleString()}</div>
+            <span className="text-[10px]" style={{ color: '#90A4AE' }}>exc. VAT</span>
           </div>
           <button
             onClick={() => addItem({
@@ -78,10 +75,11 @@ export default function ProductCard({ product }: { product: Product }) {
               price: product.price,
               image: product.image,
             })}
-            className="w-9 h-9 bg-blue-mid hover:bg-blue-dark text-white rounded-lg flex items-center justify-center text-xl font-light transition-colors flex-shrink-0"
+            className="px-4 py-2 text-[12px] font-bold text-white rounded-lg transition-all"
+            style={{ background: 'linear-gradient(135deg, #1565C0, #2196F3)' }}
             aria-label={`Add ${product.name} to cart`}
           >
-            +
+            Add +
           </button>
         </div>
       </div>
