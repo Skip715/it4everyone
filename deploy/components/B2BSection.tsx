@@ -1,49 +1,40 @@
 import Link from 'next/link'
-import Image from 'next/image'
 
 export default function B2BSection() {
   return (
-    <section id="b2b" className="flex min-h-[400px] overflow-hidden">
-      {/* Left: real photo */}
-      <div className="flex-1 relative overflow-hidden">
-        <Image
-          src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=900&q=80"
-          alt="Business professionals working with IT"
-          fill
-          className="object-cover"
-        />
-        <div className="absolute inset-0" style={{ background: 'rgba(13,43,94,0.15)' }} />
-      </div>
-
-      {/* Right: content */}
-      <div className="flex-shrink-0 flex flex-col justify-center gap-5 px-12 py-14" style={{ width: '460px', background: '#0D2B5E' }}>
-        <p className="text-[10.5px] font-bold tracking-[1.5px] uppercase" style={{ color: '#5BA4D4' }}>IT4Everyone B2B</p>
-        <h2 className="text-[28px] font-extrabold text-white leading-[1.2]">
-          Your dedicated enterprise IT partner
-        </h2>
-        <p className="text-[14px] leading-[1.75]" style={{ color: '#8EBADF' }}>
+    <section id="b2b" className="px-10 py-16" style={{ background: '#F0F4FA' }}>
+      <div className="mb-10 text-center">
+        <p className="text-[11px] font-bold tracking-[1.5px] uppercase mb-2" style={{ color: '#1976D2' }}>IT4Everyone B2B</p>
+        <h2 className="text-[30px] font-extrabold" style={{ color: '#0D2B5E' }}>Hardware for business</h2>
+        <p className="text-[14px] mt-3 max-w-xl mx-auto leading-[1.75]" style={{ color: '#546E7A' }}>
           Personalised hardware procurement, dedicated account management and flexible financing — designed around your business, not a generic catalogue.
         </p>
-        <div className="flex gap-3 flex-wrap mt-1">
-          <Link href="/contact" className="btn-primary px-5 py-2.5 text-[13.5px]" style={{ borderRadius: '8px' }}>
-            Get started
-          </Link>
-          <Link href="/services" className="px-5 py-2.5 rounded-lg text-[13.5px] font-bold border-2 transition-all" style={{ background: 'transparent', color: 'white', borderColor: 'rgba(255,255,255,0.3)' }}>
-            B2B benefits
-          </Link>
-        </div>
-        <div className="flex gap-8 mt-2 pt-4" style={{ borderTop: '1px solid rgba(255,255,255,0.1)' }}>
-          {[
-            { icon: '🛒', label: 'Simplify purchasing' },
-            { icon: '📈', label: 'Track spend' },
-            { icon: '🛡️', label: 'Shop securely' },
-          ].map(({ icon, label }) => (
-            <div key={label} className="text-center">
-              <div className="text-xl mb-1.5">{icon}</div>
-              <div className="text-[11px]" style={{ color: '#8EBADF' }}>{label}</div>
-            </div>
-          ))}
-        </div>
+      </div>
+
+      <div className="grid grid-cols-3 gap-6 mb-10">
+        {[
+          { icon: '🖥️', title: 'Tailored procurement', body: 'We source exactly what your business needs — from a single laptop to a full enterprise rollout.' },
+          { icon: '💼', title: 'Dedicated account management', body: 'A single point of contact who knows your infrastructure and goals inside out.' },
+          { icon: '📊', title: 'Flexible financing', body: 'Outright purchase, leasing or subscription — structured around your cash flow.' },
+          { icon: '🔒', title: 'Secure & compliant', body: 'Data wiping, asset recertification and full audit trails as standard.' },
+          { icon: '⚡', title: 'Fast turnaround', body: 'Quick quotes and swift delivery so your projects stay on schedule.' },
+          { icon: '♻️', title: 'Sustainable IT', body: 'Recertified assets and responsible disposal to meet your ESG commitments.' },
+        ].map(({ icon, title, body }) => (
+          <div key={title} className="rounded-2xl p-7 bg-white border flex flex-col gap-3" style={{ borderColor: '#DDE5EF', boxShadow: '0 2px 12px rgba(13,43,94,0.06)' }}>
+            <div className="text-3xl">{icon}</div>
+            <h3 className="text-[15px] font-extrabold" style={{ color: '#0D2B5E' }}>{title}</h3>
+            <p className="text-[13px] leading-[1.65]" style={{ color: '#546E7A' }}>{body}</p>
+          </div>
+        ))}
+      </div>
+
+      <div className="flex gap-4 justify-center">
+        <Link href="/contact" className="btn-primary px-6 py-3 text-[14px]" style={{ borderRadius: '8px' }}>
+          Get started
+        </Link>
+        <Link href="/services" className="px-6 py-3 rounded-lg text-[14px] font-bold border-2 transition-all" style={{ background: 'transparent', color: '#0D2B5E', borderColor: '#0D2B5E' }}>
+          Learn more
+        </Link>
       </div>
     </section>
   )
