@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { useCart } from '@/lib/cart-context'
 
 interface Product {
@@ -15,42 +16,41 @@ interface Product {
   inStock: boolean
 }
 
-const brandColors: Record<string, string> = {
-  Dell: 'text-blue-mid',
-  HP: 'text-blue-mid',
-  Lenovo: 'text-blue-mid',
-}
-
 const badgeStyles: Record<string, { bg: string; text: string }> = {
   new: { bg: '#E8F5E9', text: '#2E7D32' },
   sale: { bg: '#FFF3E0', text: '#E65100' },
   b2b: { bg: '#EDE7F6', text: '#4527A0' },
 }
 
-const productIcons: Record<string, string> = {
-  laptop: '💻',
-  desktop: '🖥️',
-  server: '🗄️',
-  peripheral: '🖱️',
-}
-
 export default function ProductCard({ product }: { product: Product }) {
   const { addItem } = useCart()
   const badge = badgeStyles[product.badge]
+  const hasImage = product.image && !product.image.includes('/images/products/')
 
   return (
     <div className="group bg-white rounded-2xl overflow-hidden flex flex-col transition-all duration-200 hover:-translate-y-1" style={{ border: '1px solid #E8EDF5', boxShadow: '0 2px 8px rgba(13,43,94,0.06)' }}>
       <Link href={`/products/${product.id}`} className="block">
-        {/* Image area */}
-        <div className="h-[180px] flex items-center justify-center relative flex-shrink-0" style={{ background: 'linear-gradient(135deg, #F0F4FA 0%, #E8EDF5 100%)' }}>
+        <div className="h-[200px] flex items-center justify-center relative flex-shrink-0 overflow-hidden" style={{ background: 'linear-gradient(135deg, #F0F4FA 0%, #E8EDF5 100%)' }}>
           {product.badge && badge && (
-            <div className="absolute top-3 left-3 text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-[0.5px]" style={{ background: badge.bg, color: badge.text }}>
+            <div className="absolute top-3 left-3 z-10 text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-[0.5px]" style={{ background: badge.bg, color: badge.text }}>
               {product.badge === 'b2b' ? 'B2B' : product.badge.charAt(0).toUpperCase() + product.badge.slice(1)}
             </div>
           )}
-          <div className="text-[64px] select-none transition-transform duration-200 group-hover:scale-110">
-            {productIcons[product.category] || '📦'}
-          </div>
+          {hasImage ? (
+            <div className="relative w-full h-full p-4">
+              <Image
+                src={product.image}
+                alt={product.name}
+                fill
+                className="object-contain transition-transform duration-200 group-hover:scale-105 p-4"
+                unoptimized
+              />
+            </div>
+          ) : (
+            <div className="text-[64px] select-none transition-transform duration-200 group-hover:scale-110">
+              🖥️
+            </div>
+          )}
         </div>
       </Link>
 
