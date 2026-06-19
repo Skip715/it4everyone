@@ -5,20 +5,25 @@ import { useState } from 'react'
 export default function ContactSection() {
   const [sent, setSent] = useState(false)
   const [loading, setLoading] = useState(false)
+  const [form, setForm] = useState({ name: '', company: '', email: '', phone: '', message: '', procurement: 'Outright purchase', devices: '1–10 devices' })
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) {
+    setForm(f => ({ ...f, [e.target.name]: e.target.value }))
+  }
+
+  function handleSubmit(e: React.MouseEvent) {
     e.preventDefault()
-    setLoading(true)
-    const form = e.currentTarget
-    const data = Object.fromEntries(new FormData(form))
-    try {
-      await fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
-      setSent(true)
-    } catch {
-      alert('Something went wrong. Please email info@it4evo.co.uk directly.')
-    } finally {
-      setLoading(false)
+    if (!form.name || !form.email || !form.message) {
+      alert('Please fill in your name, email and message.')
+      return
     }
+    setLoading(true)
+    const subject = encodeURIComponent(`IT4Everyone Enquiry from ${form.name} — ${form.company}`)
+    const body = encodeURIComponent(
+      `Name: ${form.name}\nCompany: ${form.company}\nEmail: ${form.email}\nPhone: ${form.phone}\nProcurement: ${form.procurement}\nDevices: ${form.devices}\n\nMessage:\n${form.message}`
+    )
+    window.location.href = `mailto:info@it4evo.co.uk?subject=${subject}&body=${body}`
+    setTimeout(() => { setSent(true); setLoading(false) }, 1000)
   }
 
   return (
@@ -57,31 +62,31 @@ export default function ContactSection() {
             </div>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} className="flex flex-col gap-2.5">
+          <div className="flex flex-col gap-2.5">
             <div className="grid grid-cols-2 gap-2.5">
-              <input name="name" required placeholder="Your name" className="border-[1.5px] border-gray-200 rounded-lg px-3.5 py-2.5 text-[13.5px] text-navy outline-none focus:border-blue-mid" />
-              <input name="company" placeholder="Company name" className="border-[1.5px] border-gray-200 rounded-lg px-3.5 py-2.5 text-[13.5px] text-navy outline-none focus:border-blue-mid" />
-              <input name="email" type="email" required placeholder="Email address" className="border-[1.5px] border-gray-200 rounded-lg px-3.5 py-2.5 text-[13.5px] text-navy outline-none focus:border-blue-mid" />
-              <input name="phone" placeholder="Phone number" className="border-[1.5px] border-gray-200 rounded-lg px-3.5 py-2.5 text-[13.5px] text-navy outline-none focus:border-blue-mid" />
+              <input name="name" required placeholder="Your name" value={form.name} onChange={handleChange} className="border-[1.5px] border-gray-200 rounded-lg px-3.5 py-2.5 text-[13.5px] text-navy outline-none focus:border-blue-mid" />
+              <input name="company" placeholder="Company name" value={form.company} onChange={handleChange} className="border-[1.5px] border-gray-200 rounded-lg px-3.5 py-2.5 text-[13.5px] text-navy outline-none focus:border-blue-mid" />
+              <input name="email" type="email" required placeholder="Email address" value={form.email} onChange={handleChange} className="border-[1.5px] border-gray-200 rounded-lg px-3.5 py-2.5 text-[13.5px] text-navy outline-none focus:border-blue-mid" />
+              <input name="phone" placeholder="Phone number" value={form.phone} onChange={handleChange} className="border-[1.5px] border-gray-200 rounded-lg px-3.5 py-2.5 text-[13.5px] text-navy outline-none focus:border-blue-mid" />
             </div>
-            <textarea name="message" rows={3} required placeholder="What hardware or software are you looking to procure? How many devices?" className="border-[1.5px] border-gray-200 rounded-lg px-3.5 py-2.5 text-[13.5px] text-navy outline-none focus:border-blue-mid resize-none" />
+            <textarea name="message" rows={3} required placeholder="What hardware are you looking to procure? How many devices?" value={form.message} onChange={handleChange} className="border-[1.5px] border-gray-200 rounded-lg px-3.5 py-2.5 text-[13.5px] text-navy outline-none focus:border-blue-mid resize-none" />
             <div className="grid grid-cols-2 gap-2.5">
-              <select name="procurement" className="border-[1.5px] border-gray-200 rounded-lg px-3.5 py-2.5 text-[13.5px] text-navy outline-none bg-white">
+              <select name="procurement" value={form.procurement} onChange={handleChange} className="border-[1.5px] border-gray-200 rounded-lg px-3.5 py-2.5 text-[13.5px] text-navy outline-none bg-white">
                 <option>Outright purchase</option>
                 <option>Leasing / subscription</option>
                 <option>Flexible model</option>
               </select>
-              <select name="devices" className="border-[1.5px] border-gray-200 rounded-lg px-3.5 py-2.5 text-[13.5px] text-navy outline-none bg-white">
+              <select name="devices" value={form.devices} onChange={handleChange} className="border-[1.5px] border-gray-200 rounded-lg px-3.5 py-2.5 text-[13.5px] text-navy outline-none bg-white">
                 <option>1–10 devices</option>
                 <option>11–50 devices</option>
                 <option>51–200 devices</option>
                 <option>200+ devices</option>
               </select>
             </div>
-            <button type="submit" disabled={loading} className="bg-navy hover:bg-blue text-white font-bold py-3.5 rounded-lg text-[14px] transition-colors disabled:opacity-60 mt-1">
-              {loading ? 'Sending…' : 'Send enquiry — get a proposal →'}
+            <button onClick={handleSubmit} disabled={loading} className="bg-navy hover:bg-blue text-white font-bold py-3.5 rounded-lg text-[14px] transition-colors disabled:opacity-60 mt-1">
+              {loading ? 'Opening email…' : 'Send enquiry — get a proposal →'}
             </button>
-          </form>
+          </div>
         )}
       </div>
     </section>
