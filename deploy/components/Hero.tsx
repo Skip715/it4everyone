@@ -57,7 +57,7 @@ export default function Hero() {
           className="inline-flex items-center gap-2 border px-3.5 py-1.5 rounded-full mb-5 text-[10.5px] font-bold tracking-[1.5px] uppercase"
           style={{ borderColor: 'rgba(91,164,212,0.4)', color: '#8EBADF' }}
         >
-          UK Independent B2B IT Distributor
+          UK Independent B2B IT Stockist
         </div>
 
         <h1
