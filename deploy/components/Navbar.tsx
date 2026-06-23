@@ -72,7 +72,7 @@ export default function Navbar() {
           <Link href="/contact" className="btn-secondary px-4 py-2 text-sm">
             Get a quote
           </Link>
-          <Link href="/products" className="btn-orange px-5 py-2.5 text-sm">
+          <Link href="https://competitve-components.myshopify.com/collections/all" className="btn-orange px-5 py-2.5 text-sm">
             Shop now →
           </Link>
           <button
