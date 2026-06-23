@@ -76,7 +76,7 @@ export default function Hero() {
         </p>
 
         <div className="flex gap-3 mb-10">
-          <Link href="/products" className="btn-primary px-7 py-3.5 text-[15px]" style={{ borderRadius: '8px' }}>
+          <Link href="https://competitve-components.myshopify.com/collections/all" className="btn-primary px-7 py-3.5 text-[15px]" style={{ borderRadius: '8px' }}>
             Browse hardware
           </Link>
           <Link href="/contact" className="px-6 py-3.5 text-[15px] font-bold rounded-lg border-2 transition-all" style={{ background: 'transparent', color: 'white', borderColor: 'rgba(255,255,255,0.3)' }}>
