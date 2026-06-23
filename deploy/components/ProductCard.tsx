@@ -29,7 +29,7 @@ export default function ProductCard({ product }: { product: Product }) {
 
   return (
     <div className="group bg-white rounded-2xl overflow-hidden flex flex-col transition-all duration-200 hover:-translate-y-1" style={{ border: '1px solid #E8EDF5', boxShadow: '0 2px 8px rgba(13,43,94,0.06)' }}>
-      <Link href={`/products/${product.id}`} className="block">
+      <Link href="https://competitve-components.myshopify.com/collections/all" className="block">
         <div className="h-[200px] flex items-center justify-center relative flex-shrink-0 overflow-hidden" style={{ background: 'linear-gradient(135deg, #F0F4FA 0%, #E8EDF5 100%)' }}>
           {product.badge && badge && (
             <div className="absolute top-3 left-3 z-10 text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-[0.5px]" style={{ background: badge.bg, color: badge.text }}>
@@ -55,7 +55,7 @@ export default function ProductCard({ product }: { product: Product }) {
       </Link>
 
       <div className="p-5 flex flex-col flex-1">
-        <Link href={`/products/${product.id}`} className="block flex-1">
+        <Link href="https://competitve-components.myshopify.com/collections/all" className="block flex-1">
           <p className="text-[10px] font-bold uppercase tracking-[1.5px] mb-1.5" style={{ color: '#1976D2' }}>
             {product.brand}
           </p>
