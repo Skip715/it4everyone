@@ -2,7 +2,6 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useCart } from '@/lib/cart-context'
 import Logo from './Logo'
 
 const links = [
@@ -17,7 +16,6 @@ const links = [
 
 export default function Navbar() {
   const pathname = usePathname()
-  const { count, openCart } = useCart()
 
   return (
     <header className="sticky top-0 z-50">
@@ -75,18 +73,6 @@ export default function Navbar() {
           <Link href="https://competitve-components.myshopify.com/collections/all" className="btn-orange px-5 py-2.5 text-sm">
             Shop now →
           </Link>
-          <button
-            onClick={openCart}
-            className="relative p-2 cursor-pointer rounded-lg hover:bg-gray-50 transition-colors"
-            aria-label={`Cart (${count} items)`}
-          >
-            <svg className="w-6 h-6" style={{ color: '#3D5577' }} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
-            {count > 0 && (
-              <span className="absolute -top-0.5 -right-0.5 bg-red-600 text-white text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center border-2 border-white">
-                {count}
-              </span>
-            )}
-          </button>
         </div>
       </nav>
     </header>
