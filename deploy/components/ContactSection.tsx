@@ -22,7 +22,7 @@ export default function ContactSection() {
     const body = encodeURIComponent(
       `Name: ${form.name}\nCompany: ${form.company}\nEmail: ${form.email}\nPhone: ${form.phone}\nProcurement: ${form.procurement}\nDevices: ${form.devices}\n\nMessage:\n${form.message}`
     )
-    window.location.href = `mailto:info@it4evo.co.uk?subject=${subject}&body=${body}`
+    window.location.href = `mailto:info@it4eo.co.uk?subject=${subject}&body=${body}`
     setTimeout(() => { setSent(true); setLoading(false) }, 1000)
   }
 
@@ -40,7 +40,7 @@ export default function ContactSection() {
           {[
             { label: 'Address', value: 'Regus The Gatehouse, Gatehouse Way, Aylesbury, Buckinghamshire', icon: '📍' },
             { label: 'Phone', value: '01296 816012 · 07518 577981', icon: '📞' },
-            { label: 'Email', value: 'info@it4evo.co.uk', icon: '✉️' },
+            { label: 'Email', value: 'info@it4eo.co.uk', icon: '✉️' },
             { label: 'Website', value: 'www.it4eo.co.uk', icon: '🌐' },
           ].map(({ label, value, icon }) => (
             <div key={label} className="flex gap-3.5 items-start">
