@@ -204,7 +204,7 @@ export const companyInfo = {
   tagline: 'Your Dell Specialist',
   phone1: '01296 816012',
   phone2: '07518 577981',
-  email: 'info@it4evo.co.uk',
+  email: 'info@it4eo.co.uk',
   website: 'www.it4eo.co.uk',
   address: 'Regus The Gatehouse, Gatehouse Way, Aylesbury, Buckinghamshire',
   founded: '2020',
