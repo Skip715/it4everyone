@@ -6,303 +6,61 @@ import Link from 'next/link'
 import { products } from '@/lib/data'
 import { useCart } from '@/lib/cart-context'
 
-const fullSpecs: Record<number, { sections: { title: string; rows: [string, string][] }[] }> = {
-  1: {
-    sections: [
-      { title: 'Display', rows: [
-        ['Screen Size', '31.5 inches'],
-        ['Panel Type', 'IPS Black'],
-        ['Resolution', '4K UHD (3840 x 2160)'],
-        ['Refresh Rate', '120Hz'],
-        ['Contrast Ratio', '3000:1 (typical)'],
-        ['Brightness', '600 cd/m² (typical)'],
-        ['Colour Coverage', '99% sRGB, 99% DCI-P3'],
-        ['Response Time', '5ms (GtG)'],
-        ['Aspect Ratio', '16:9'],
-        ['Eye Comfort', 'ComfortView Plus, TÜV-certified'],
-      ]},
-      { title: 'Connectivity', rows: [
-        ['Thunderbolt 4', '1x upstream (140W PD)'],
-        ['USB-C', '1x downstream (15W)'],
-        ['USB-A 3.2', '4x (10Gbps)'],
-        ['HDMI', '1x HDMI 2.1'],
-        ['DisplayPort', '1x DP 1.4'],
-        ['Audio', '3.5mm headphone jack'],
-        ['RJ45 Ethernet', 'Yes (2.5GbE)'],
-      ]},
-      { title: 'Physical', rows: [
-        ['VESA Mount', '100 x 100mm'],
-        ['Height Adjustable', 'Yes (150mm)'],
-        ['Tilt', '-5° to 21°'],
-        ['Swivel', '-30° to 30°'],
-        ['Pivot', '90°'],
-        ['Weight (with stand)', '8.56kg'],
-      ]},
-    ],
-  },
-  2: {
-    sections: [
-      { title: 'Display', rows: [
-        ['Screen Size', '27 inches'],
-        ['Panel Type', 'IPS Black'],
-        ['Resolution', '4K UHD (3840 x 2160)'],
-        ['Refresh Rate', '120Hz'],
-        ['Contrast Ratio', '3000:1 (typical)'],
-        ['Brightness', '600 cd/m² (typical)'],
-        ['Colour Coverage', '99% sRGB, 99% DCI-P3'],
-        ['Response Time', '5ms (GtG)'],
-        ['Aspect Ratio', '16:9'],
-        ['Eye Comfort', 'ComfortView Plus, TÜV-certified'],
-      ]},
-      { title: 'Connectivity', rows: [
-        ['Thunderbolt 4', '1x upstream (140W PD)'],
-        ['USB-C', '1x downstream (15W)'],
-        ['USB-A 3.2', '4x (10Gbps)'],
-        ['HDMI', '1x HDMI 2.1'],
-        ['DisplayPort', '1x DP 1.4'],
-        ['Audio', '3.5mm headphone jack'],
-        ['RJ45 Ethernet', 'Yes (2.5GbE)'],
-      ]},
-      { title: 'Physical', rows: [
-        ['VESA Mount', '100 x 100mm'],
-        ['Height Adjustable', 'Yes (130mm)'],
-        ['Tilt', '-5° to 21°'],
-        ['Swivel', '-30° to 30°'],
-        ['Pivot', '90°'],
-        ['Weight (with stand)', '6.87kg'],
-      ]},
-    ],
-  },
-  3: {
-    sections: [
-      { title: 'Display', rows: [
-        ['Screen Size', '39.7 inches (curved)'],
-        ['Panel Type', 'IPS'],
-        ['Resolution', '5K2K (5120 x 2160)'],
-        ['Refresh Rate', '120Hz'],
-        ['Curvature', '2500R'],
-        ['Brightness', '300 cd/m² (typical)'],
-        ['Colour Coverage', '99% sRGB, 98% DCI-P3'],
-        ['Response Time', '5ms (GtG)'],
-        ['Aspect Ratio', '21:9'],
-        ['Eye Comfort', 'ComfortView Plus, TÜV-certified'],
-      ]},
-      { title: 'Connectivity', rows: [
-        ['Thunderbolt 4', '1x upstream (140W PD)'],
-        ['USB-C', '1x downstream (15W)'],
-        ['USB-A 3.2', '4x (10Gbps)'],
-        ['HDMI', '1x HDMI 2.1'],
-        ['DisplayPort', '1x DP 1.4'],
-        ['Audio', '3.5mm headphone jack'],
-        ['RJ45 Ethernet', 'Yes (2.5GbE)'],
-      ]},
-      { title: 'Physical', rows: [
-        ['VESA Mount', '100 x 100mm'],
-        ['Height Adjustable', 'Yes (120mm)'],
-        ['Tilt', '-5° to 21°'],
-        ['Swivel', '-30° to 30°'],
-        ['Pivot', '90°'],
-        ['Weight (with stand)', '12.45kg'],
-      ]},
-    ],
-  },
-  4: {
-    sections: [
-      { title: 'Power Delivery', rows: [
-        ['USB-C Power Delivery', '100W'],
-        ['Host Interface', 'USB-C / Thunderbolt'],
-      ]},
-      { title: 'Connectivity', rows: [
-        ['USB-A 3.2 Gen 2', '2x (10Gbps)'],
-        ['USB-C 3.2 Gen 2', '2x (10Gbps)'],
-        ['HDMI', '1x HDMI 2.0'],
-        ['DisplayPort', '1x DP 1.4'],
-        ['RJ45 Ethernet', 'Yes (1GbE)'],
-        ['Audio In/Out', 'Yes (combo jack)'],
-        ['SD Card Reader', 'Yes (SD 4.0)'],
-      ]},
-      { title: 'Physical', rows: [
-        ['Dimensions', '172 x 71 x 21mm'],
-        ['Weight', '393g'],
-        ['Cable Length', '0.8m'],
-        ['Compatibility', 'USB-C & Thunderbolt laptops'],
-      ]},
-    ],
-  },
-  5: {
-    sections: [
-      { title: 'Power Delivery', rows: [
-        ['USB-C Power Delivery', '130W'],
-        ['Host Interface', 'USB-C / Thunderbolt'],
-        ['Remote Management', 'Yes (Intel AMT compatible)'],
-      ]},
-      { title: 'Connectivity', rows: [
-        ['USB-A 3.2 Gen 2', '2x (10Gbps)'],
-        ['USB-C 3.2 Gen 2', '2x (10Gbps)'],
-        ['HDMI', '1x HDMI 2.0'],
-        ['DisplayPort', '2x DP 1.4'],
-        ['RJ45 Ethernet', 'Yes (1GbE)'],
-        ['Audio In/Out', 'Yes (combo jack)'],
-      ]},
-      { title: 'Physical', rows: [
-        ['Dimensions', '172 x 71 x 21mm'],
-        ['Weight', '400g'],
-        ['Cable Length', '0.8m'],
-        ['Compatibility', 'USB-C & Thunderbolt laptops'],
-      ]},
-    ],
-  },
-  6: {
-    sections: [
-      { title: 'Power', rows: [
-        ['System Power Delivery', '180W'],
-        ['USB-C Power Delivery', '90W'],
-        ['Host Interface', 'Thunderbolt 4'],
-      ]},
-      { title: 'Connectivity', rows: [
-        ['Thunderbolt 4 Ports', '4x (40Gbps)'],
-        ['USB-A 3.2 Gen 2', '5x (10Gbps)'],
-        ['DisplayPort', '2x DP 1.4'],
-        ['RJ45 Ethernet', 'Yes (1GbE)'],
-        ['Audio In/Out', 'Yes (combo jack)'],
-        ['Remote Management', 'Yes'],
-      ]},
-      { title: 'Physical', rows: [
-        ['Dimensions', '210 x 90 x 28mm'],
-        ['Weight', '0.74kg'],
-        ['Compatibility', 'Thunderbolt 4 laptops'],
-      ]},
-    ],
-  },
-  7: {
-    sections: [
-      { title: 'Display', rows: [
-        ['Screen Size', '31.5 inches'],
-        ['Panel Type', 'IPS'],
-        ['Resolution', '4K UHD (3840 x 2160)'],
-        ['Refresh Rate', '60Hz'],
-        ['Brightness', '350 cd/m² (typical)'],
-        ['Colour Coverage', '99% sRGB'],
-        ['Response Time', '8ms (GtG)'],
-        ['Aspect Ratio', '16:9'],
-        ['Eye Comfort', 'ComfortView Plus, TÜV-certified'],
-      ]},
-      { title: 'Connectivity', rows: [
-        ['USB-C', '1x upstream (90W PD)'],
-        ['USB-A 3.2', '3x (10Gbps)'],
-        ['HDMI', '1x HDMI 2.0'],
-        ['DisplayPort', '1x DP 1.4'],
-        ['Audio', '3.5mm headphone jack'],
-        ['RJ45 Ethernet', 'Yes (1GbE)'],
-      ]},
-      { title: 'Physical', rows: [
-        ['VESA Mount', '100 x 100mm'],
-        ['Height Adjustable', 'Yes (130mm)'],
-        ['Tilt', '-5° to 21°'],
-        ['Swivel', '-30° to 30°'],
-        ['Pivot', '90°'],
-        ['Weight (with stand)', '8.3kg'],
-      ]},
-    ],
-  },
-  8: {
-    sections: [
-      { title: 'Display', rows: [
-        ['Screen Size', '27 inches'],
-        ['Panel Type', 'IPS'],
-        ['Resolution', '4K UHD (3840 x 2160)'],
-        ['Refresh Rate', '60Hz'],
-        ['Brightness', '350 cd/m² (typical)'],
-        ['Colour Coverage', '99% sRGB'],
-        ['Response Time', '8ms (GtG)'],
-        ['Aspect Ratio', '16:9'],
-        ['Eye Comfort', 'ComfortView Plus, TÜV-certified'],
-      ]},
-      { title: 'Connectivity', rows: [
-        ['USB-C', '1x upstream (90W PD)'],
-        ['USB-A 3.2', '4x (10Gbps)'],
-        ['HDMI', '1x HDMI 2.0'],
-        ['DisplayPort', '1x DP 1.4'],
-        ['Audio', '3.5mm headphone jack'],
-        ['RJ45 Ethernet', 'Yes (2.5GbE)'],
-      ]},
-      { title: 'Physical', rows: [
-        ['VESA Mount', '100 x 100mm'],
-        ['Height Adjustable', 'Yes (130mm)'],
-        ['Tilt', '-5° to 21°'],
-        ['Swivel', '-30° to 30°'],
-        ['Pivot', '90°'],
-        ['Weight (with stand)', '6.96kg'],
-      ]},
-    ],
-  },
-}
-
 export default function ProductPage({ params }: { params: { id: string } }) {
   const product = products.find((p) => p.id === Number(params.id))
   if (!product) notFound()
-  const specs = fullSpecs[product.id]
   const { addItem } = useCart()
 
   return (
-    <div style={{ background: '#F8FAFA' }}>
-      {/* Breadcrumb */}
-      <div className="px-4 sm:px-6 lg:px-10 py-4 bg-white border-b" style={{ borderColor: '#EEF2F7' }}>
-        <div className="flex items-center gap-2 text-xs max-w-6xl mx-auto" style={{ color: '#78909C' }}>
+    <div className="min-h-screen bg-gray-50">
+      <div className="px-4 py-4 bg-white border-b border-gray-200">
+        <div className="flex items-center gap-2 text-xs text-gray-500 max-w-6xl mx-auto">
           <Link href="/" className="hover:text-blue-600">Home</Link>
           <span>/</span>
           <Link href="/products" className="hover:text-blue-600">Products</Link>
           <span>/</span>
-          <span style={{ color: '#0D2B5E' }}>{product.name}</span>
+          <span className="text-gray-800">{product.name}</span>
         </div>
       </div>
 
-      {/* Main product area */}
-      <div className="px-4 sm:px-6 lg:px-10 py-8 sm:py-12 grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-        {/* Image */}
-        <div>
-          <div className="rounded-2xl overflow-hidden flex items-center justify-center p-6 sm:p-10" style={{ background: 'linear-gradient(135deg, #EEF2F7 0%, #F8FAFA 100%)', minHeight: '300px' }}>
-            <div className="relative w-full h-[280px] sm:h-[380px]">
-              <Image
-                src={product.image}
-                alt={product.name}
-                fill
-                className="object-contain"
-                unoptimized
-              />
-            </div>
+      <div className="max-w-6xl mx-auto px-4 py-8 grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="bg-white rounded-2xl p-8 flex items-center justify-center min-h-[300px]">
+          <div className="relative w-full h-[280px] sm:h-[380px]">
+            <Image
+              src={product.image}
+              alt={product.name}
+              fill
+              className="object-contain"
+              unoptimized
+            />
           </div>
         </div>
 
-        {/* Info */}
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-5">
           <div>
-            <p className="text-xs font-bold uppercase tracking-[1.5px] mb-2" style={{ color: '#1976D2' }}>{product.brand}</p>
-            <h1 className="text-2xl sm:text-3xl font-extrabold leading-tight mb-2" style={{ color: '#0D2B5E' }}>{product.name}</h1>
-            <p className="text-sm leading-relaxed" style={{ color: '#546E7A' }}>{product.description}</p>
+            <p className="text-xs font-bold uppercase tracking-widest text-blue-600 mb-2">{product.brand}</p>
+            <h1 className="text-2xl sm:text-3xl font-extrabold text-gray-900 mb-3">{product.name}</h1>
+            <p className="text-sm text-gray-600 leading-relaxed">{product.description}</p>
           </div>
 
-          {/* Spec pills */}
           <div className="flex flex-wrap gap-2">
             {product.spec.split(' · ').map((s) => (
-              <span key={s} className="px-3 py-1.5 rounded-full text-xs font-semibold" style={{ background: '#EEF2F7', color: '#37474F' }}>
+              <span key={s} className="px-3 py-1.5 rounded-full text-xs font-semibold bg-gray-100 text-gray-700">
                 {s}
               </span>
             ))}
           </div>
 
-          {/* Price & CTA */}
-          <div className="rounded-2xl p-5 mt-1" style={{ background: 'white', border: '1px solid #E8EDF5' }}>
+          <div className="bg-white rounded-2xl p-5 border border-gray-200">
             <div className="flex items-end gap-2 mb-1">
-              <span className="text-3xl font-extrabold" style={{ color: '#0D2B5E' }}>£{product.price.toLocaleString()}</span>
-              <span className="text-sm mb-1" style={{ color: '#90A4AE' }}>exc. VAT</span>
+              <span className="text-3xl font-extrabold text-gray-900">£{product.price.toLocaleString()}</span>
+              <span className="text-sm mb-1 text-gray-400">exc. VAT</span>
             </div>
-            <p className="text-xs mb-4" style={{ color: '#90A4AE' }}>Price shown excludes VAT. Contact us for bulk pricing.</p>
+            <p className="text-xs text-gray-400 mb-5">Price shown excludes VAT. Contact us for bulk pricing.</p>
             <div className="flex flex-col gap-3">
               <button
                 onClick={() => addItem({ id: product.id, name: product.name, brand: product.brand, price: product.price, image: product.image })}
-                className="w-full py-3.5 text-sm font-bold text-white rounded-xl transition-all"
-                style={{ background: 'linear-gradient(135deg, #1565C0, #2196F3)' }}
+                className="w-full py-3.5 text-sm font-bold text-white rounded-xl bg-blue-600 hover:bg-blue-700 transition-all"
               >
                 Add to cart
               </button>
@@ -310,60 +68,34 @@ export default function ProductPage({ params }: { params: { id: string } }) {
                 href="https://competitve-components.myshopify.com/collections/all"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full py-3.5 text-sm font-bold text-white rounded-xl transition-all text-center"
-                style={{ background: 'linear-gradient(135deg, #0D2B5E, #1565C0)' }}
+                className="w-full py-3.5 text-sm font-bold text-white rounded-xl text-center bg-[#0D2B5E] hover:bg-blue-900 transition-all"
               >
-                Buy in our Shop →
+                Buy in our Shop
               </a>
               <Link
                 href="/contact"
-                className="w-full py-3.5 text-sm font-bold rounded-xl text-center border-2"
-                style={{ color: '#0D2B5E', borderColor: '#0D2B5E' }}
+                className="w-full py-3.5 text-sm font-bold rounded-xl text-center border-2 border-[#0D2B5E] text-[#0D2B5E] hover:bg-[#0D2B5E] hover:text-white transition-all"
               >
-                Request a quote →
+                Request a quote
               </Link>
             </div>
           </div>
 
-          {/* Stock */}
-          <div className="flex items-center gap-2 text-sm" style={{ color: '#2E7D32' }}>
+          <div className="flex items-center gap-2 text-sm text-green-700">
             <span>✓</span>
             <span className="font-semibold">In stock — free UK delivery available</span>
           </div>
         </div>
       </div>
 
-      {/* Full spec table */}
-      {specs && (
-        <div className="px-4 sm:px-6 lg:px-10 pb-16 max-w-6xl mx-auto">
-          <h2 className="text-xl font-extrabold mb-6" style={{ color: '#0D2B5E' }}>Full specifications</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-            {specs.sections.map((section) => (
-              <div key={section.title} className="rounded-2xl overflow-hidden" style={{ border: '1px solid #E8EDF5' }}>
-                <div className="px-5 py-3" style={{ background: '#0D2B5E' }}>
-                  <h3 className="text-xs font-bold text-white uppercase tracking-[1px]">{section.title}</h3>
-                </div>
-                <div className="bg-white">
-                  {section.rows.map(([label, value], i) => (
-                    <div key={label} className="px-5 py-3 flex justify-between gap-4" style={{ borderTop: i > 0 ? '1px solid #F0F4F8' : undefined }}>
-                      <span className="text-xs font-semibold" style={{ color: '#546E7A' }}>{label}</span>
-                      <span className="text-xs text-right" style={{ color: '#0D2B5E' }}>{value}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
+      <div className="max-w-6xl mx-auto px-4 pb-16">
+        <div className="bg-[#0D2B5E] rounded-2xl p-10 text-white text-center">
+          <h2 className="text-xl font-extrabold mb-2">Need a tailored quote?</h2>
+          <p className="text-sm text-blue-200 mb-6">Get in touch for bulk pricing, leasing options or a custom procurement package.</p>
+          <Link href="/contact" className="inline-block px-8 py-3.5 text-sm font-bold rounded-xl text-white bg-blue-600 hover:bg-blue-500 transition-all">
+            Request a proposal
+          </Link>
         </div>
-      )}
-
-      {/* Related CTA */}
-      <div className="px-4 sm:px-6 lg:px-10 py-12 text-center mb-6 mx-4 sm:mx-10 rounded-2xl" style={{ background: '#0D2B5E' }}>
-        <h2 className="text-xl font-extrabold text-white mb-2">Need a tailored quote?</h2>
-        <p className="text-sm mb-6" style={{ color: '#8BEADF' }}>Get in touch for bulk pricing, leasing options or a custom procurement package.</p>
-        <Link href="/contact" className="inline-block px-8 py-3.5 text-sm font-bold rounded-xl text-white" style={{ background: 'linear-gradient(135deg, #1565C0, #2196F3)' }}>
-          Request a proposal →
-        </Link>
       </div>
     </div>
   )
