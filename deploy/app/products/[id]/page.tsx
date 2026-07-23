@@ -101,6 +101,7 @@ const fullSpecs: Record<number, { sections: { title: string; rows: [string, stri
         ['Height Adjustable', 'Yes (120mm)'],
         ['Tilt', '-5° to 21°'],
         ['Swivel', '-30° to 30°'],
+        ['Pivot', '90°'],
         ['Weight (with stand)', '12.45kg'],
       ]},
     ],
@@ -238,16 +239,16 @@ const fullSpecs: Record<number, { sections: { title: string; rows: [string, stri
 }
 
 export default function ProductPage({ params }: { params: { id: string } }) {
-  const product = products.find(p => p.id === Number(params.id))
+  const product = products.find((p) => p.id === Number(params.id))
   if (!product) notFound()
   const specs = fullSpecs[product.id]
   const { addItem } = useCart()
 
   return (
-    <div style={{ background: '#F8FAFC' }}>
+    <div style={{ background: '#F8FAFA' }}>
       {/* Breadcrumb */}
-      <div className="px-10 py-4 bg-white border-b" style={{ borderColor: '#EEF2F7' }}>
-        <div className="flex items-center gap-2 text-[12px]" style={{ color: '#78909C' }}>
+      <div className="px-4 sm:px-6 lg:px-10 py-4 bg-white border-b" style={{ borderColor: '#EEF2F7' }}>
+        <div className="flex items-center gap-2 text-xs max-w-6xl mx-auto" style={{ color: '#78909C' }}>
           <Link href="/" className="hover:text-blue-600">Home</Link>
           <span>/</span>
           <Link href="/products" className="hover:text-blue-600">Products</Link>
@@ -256,11 +257,12 @@ export default function ProductPage({ params }: { params: { id: string } }) {
         </div>
       </div>
 
-      <div className="px-10 py-12 grid grid-cols-2 gap-12 max-w-6xl mx-auto">
-        {/* Left: Image */}
+      {/* Main product area */}
+      <div className="px-4 sm:px-6 lg:px-10 py-8 sm:py-12 grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+        {/* Image */}
         <div>
-          <div className="rounded-2xl overflow-hidden flex items-center justify-center p-10" style={{ background: 'linear-gradient(135deg, #F0F4FA, #E8EDF5)', minHeight: '400px' }}>
-            <div className="relative w-full h-[380px]">
+          <div className="rounded-2xl overflow-hidden flex items-center justify-center p-6 sm:p-10" style={{ background: 'linear-gradient(135deg, #EEF2F7 0%, #F8FAFA 100%)', minHeight: '300px' }}>
+            <div className="relative w-full h-[280px] sm:h-[380px]">
               <Image
                 src={product.image}
                 alt={product.name}
@@ -272,44 +274,59 @@ export default function ProductPage({ params }: { params: { id: string } }) {
           </div>
         </div>
 
-        {/* Right: Info */}
-        <div className="flex flex-col gap-5">
+        {/* Info */}
+        <div className="flex flex-col gap-4">
           <div>
-            <p className="text-[11px] font-bold uppercase tracking-[1.5px] mb-2" style={{ color: '#1976D2' }}>{product.brand}</p>
-            <h1 className="text-[28px] font-extrabold leading-[1.2] mb-3" style={{ color: '#0D2B5E' }}>{product.name}</h1>
-            <p className="text-[14px] leading-[1.8]" style={{ color: '#546E7A' }}>{product.description}</p>
+            <p className="text-xs font-bold uppercase tracking-[1.5px] mb-2" style={{ color: '#1976D2' }}>{product.brand}</p>
+            <h1 className="text-2xl sm:text-3xl font-extrabold leading-tight mb-2" style={{ color: '#0D2B5E' }}>{product.name}</h1>
+            <p className="text-sm leading-relaxed" style={{ color: '#546E7A' }}>{product.description}</p>
           </div>
 
-          {/* Key specs pills */}
+          {/* Spec pills */}
           <div className="flex flex-wrap gap-2">
-            {product.spec.split(' · ').map(s => (
-              <span key={s} className="px-3 py-1.5 rounded-full text-[11.5px] font-semibold" style={{ background: '#EEF2F7', color: '#0D2B5E' }}>{s}</span>
+            {product.spec.split(' · ').map((s) => (
+              <span key={s} className="px-3 py-1.5 rounded-full text-xs font-semibold" style={{ background: '#EEF2F7', color: '#37474F' }}>
+                {s}
+              </span>
             ))}
           </div>
 
           {/* Price & CTA */}
-          <div className="rounded-2xl p-6 mt-2" style={{ background: 'white', border: '1px solid #E8EDF5' }}>
+          <div className="rounded-2xl p-5 mt-1" style={{ background: 'white', border: '1px solid #E8EDF5' }}>
             <div className="flex items-end gap-2 mb-1">
-              <span className="text-[32px] font-extrabold" style={{ color: '#0D2B5E' }}>£{product.price.toLocaleString()}</span>
-              <span className="text-[13px] mb-2" style={{ color: '#90A4AE' }}>exc. VAT</span>
+              <span className="text-3xl font-extrabold" style={{ color: '#0D2B5E' }}>£{product.price.toLocaleString()}</span>
+              <span className="text-sm mb-1" style={{ color: '#90A4AE' }}>exc. VAT</span>
             </div>
-            <p className="text-[12px] mb-5" style={{ color: '#90A4AE' }}>Price shown excludes VAT. Contact us for bulk pricing.</p>
+            <p className="text-xs mb-4" style={{ color: '#90A4AE' }}>Price shown excludes VAT. Contact us for bulk pricing.</p>
             <div className="flex flex-col gap-3">
               <button
                 onClick={() => addItem({ id: product.id, name: product.name, brand: product.brand, price: product.price, image: product.image })}
-                className="w-full py-3.5 text-[14px] font-bold text-white rounded-xl transition-all"
+                className="w-full py-3.5 text-sm font-bold text-white rounded-xl transition-all"
                 style={{ background: 'linear-gradient(135deg, #1565C0, #2196F3)' }}
               >
                 Add to cart
               </button>
-              <Link href="/contact" className="w-full py-3.5 text-[14px] font-bold rounded-xl text-center border-2 transition-all" style={{ color: '#0D2B5E', borderColor: '#0D2B5E' }}>
+              
+                href="https://competitve-components.myshopify.com/collections/all"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full py-3.5 text-sm font-bold text-white rounded-xl transition-all text-center"
+                style={{ background: 'linear-gradient(135deg, #0D2B5E, #1565C0)' }}
+              >
+                Buy in our Shop →
+              </a>
+              <Link
+                href="/contact"
+                className="w-full py-3.5 text-sm font-bold rounded-xl text-center border-2"
+                style={{ color: '#0D2B5E', borderColor: '#0D2B5E' }}
+              >
                 Request a quote →
               </Link>
             </div>
           </div>
 
-          {/* Stock status */}
-          <div className="flex items-center gap-2 text-[13px]" style={{ color: '#2E7D32' }}>
+          {/* Stock */}
+          <div className="flex items-center gap-2 text-sm" style={{ color: '#2E7D32' }}>
             <span>✓</span>
             <span className="font-semibold">In stock — free UK delivery available</span>
           </div>
@@ -318,19 +335,19 @@ export default function ProductPage({ params }: { params: { id: string } }) {
 
       {/* Full spec table */}
       {specs && (
-        <div className="px-10 pb-16 max-w-6xl mx-auto">
-          <h2 className="text-[20px] font-extrabold mb-6" style={{ color: '#0D2B5E' }}>Full specifications</h2>
-          <div className="grid grid-cols-2 gap-5">
-            {specs.sections.map(section => (
+        <div className="px-4 sm:px-6 lg:px-10 pb-16 max-w-6xl mx-auto">
+          <h2 className="text-xl font-extrabold mb-6" style={{ color: '#0D2B5E' }}>Full specifications</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            {specs.sections.map((section) => (
               <div key={section.title} className="rounded-2xl overflow-hidden" style={{ border: '1px solid #E8EDF5' }}>
                 <div className="px-5 py-3" style={{ background: '#0D2B5E' }}>
-                  <h3 className="text-[13px] font-bold text-white uppercase tracking-[1px]">{section.title}</h3>
+                  <h3 className="text-xs font-bold text-white uppercase tracking-[1px]">{section.title}</h3>
                 </div>
                 <div className="bg-white">
                   {section.rows.map(([label, value], i) => (
-                    <div key={label} className="px-5 py-3 flex justify-between gap-4" style={{ borderTop: i > 0 ? '1px solid #F0F4FA' : 'none' }}>
-                      <span className="text-[12.5px] font-semibold" style={{ color: '#546E7A' }}>{label}</span>
-                      <span className="text-[12.5px] text-right" style={{ color: '#0D2B5E' }}>{value}</span>
+                    <div key={label} className="px-5 py-3 flex justify-between gap-4" style={{ borderTop: i > 0 ? '1px solid #F0F4F8' : undefined }}>
+                      <span className="text-xs font-semibold" style={{ color: '#546E7A' }}>{label}</span>
+                      <span className="text-xs text-right" style={{ color: '#0D2B5E' }}>{value}</span>
                     </div>
                   ))}
                 </div>
@@ -341,10 +358,10 @@ export default function ProductPage({ params }: { params: { id: string } }) {
       )}
 
       {/* Related CTA */}
-      <div className="px-10 py-12 text-center mb-6 mx-10 rounded-2xl" style={{ background: '#0D2B5E' }}>
-        <h2 className="text-[22px] font-extrabold text-white mb-2">Need a tailored quote?</h2>
-        <p className="text-[14px] mb-6" style={{ color: '#8EBADF' }}>Get in touch for bulk pricing, leasing options or a custom procurement proposal.</p>
-        <Link href="/contact" className="inline-block px-8 py-3.5 text-[14px] font-bold rounded-xl text-white" style={{ background: 'linear-gradient(135deg, #1565C0, #2196F3)' }}>
+      <div className="px-4 sm:px-6 lg:px-10 py-12 text-center mb-6 mx-4 sm:mx-10 rounded-2xl" style={{ background: '#0D2B5E' }}>
+        <h2 className="text-xl font-extrabold text-white mb-2">Need a tailored quote?</h2>
+        <p className="text-sm mb-6" style={{ color: '#8BEADF' }}>Get in touch for bulk pricing, leasing options or a custom procurement package.</p>
+        <Link href="/contact" className="inline-block px-8 py-3.5 text-sm font-bold rounded-xl text-white" style={{ background: 'linear-gradient(135deg, #1565C0, #2196F3)' }}>
           Request a proposal →
         </Link>
       </div>
