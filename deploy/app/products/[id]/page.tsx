@@ -2,21 +2,20 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
-import { useEffect } from 'react'
 import { products } from '@/lib/data'
 import { useCart } from '@/lib/cart-context'
 
 export default function ProductPage({ params }: { params: { id: string } }) {
-  const router = useRouter()
   const product = products.find((p) => p.id === Number(params.id))
   const { addItem } = useCart()
 
-  useEffect(() => {
-    if (!product) router.push('/products')
-  }, [product, router])
-
-  if (!product) return null
+  if (!product) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <p>Product not found</p>
+      </div>
+    )
+  }
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -51,7 +50,7 @@ export default function ProductPage({ params }: { params: { id: string } }) {
           </div>
 
           <div className="flex flex-wrap gap-2">
-            {product.spec.split(' · ').map((s) => (
+            {product.spec.split(' - ').map((s) => (
               <span key={s} className="px-3 py-1.5 rounded-full text-xs font-semibold bg-gray-100 text-gray-700">
                 {s}
               </span>
@@ -60,7 +59,7 @@ export default function ProductPage({ params }: { params: { id: string } }) {
 
           <div className="bg-white rounded-2xl p-5 border border-gray-200">
             <div className="flex items-end gap-2 mb-1">
-              <span className="text-3xl font-extrabold text-gray-900">£{product.price.toLocaleString()}</span>
+              <span className="text-3xl font-extrabold text-gray-900">&#163;{product.price.toLocaleString()}</span>
               <span className="text-sm mb-1 text-gray-400">exc. VAT</span>
             </div>
             <p className="text-xs text-gray-400 mb-5">Price shown excludes VAT. Contact us for bulk pricing.</p>
@@ -89,8 +88,8 @@ export default function ProductPage({ params }: { params: { id: string } }) {
           </div>
 
           <div className="flex items-center gap-2 text-sm text-green-700">
-            <span>✓</span>
-            <span className="font-semibold">In stock — free UK delivery available</span>
+            <span>&#10003;</span>
+            <span className="font-semibold">In stock - free UK delivery available</span>
           </div>
         </div>
       </div>
