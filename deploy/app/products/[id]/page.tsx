@@ -1,15 +1,22 @@
 'use client'
 
-import { notFound } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+import { useEffect } from 'react'
 import { products } from '@/lib/data'
 import { useCart } from '@/lib/cart-context'
 
 export default function ProductPage({ params }: { params: { id: string } }) {
+  const router = useRouter()
   const product = products.find((p) => p.id === Number(params.id))
-  if (!product) notFound()
   const { addItem } = useCart()
+
+  useEffect(() => {
+    if (!product) router.push('/products')
+  }, [product, router])
+
+  if (!product) return null
 
   return (
     <div className="min-h-screen bg-gray-50">
