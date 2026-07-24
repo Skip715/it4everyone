@@ -17,11 +17,11 @@ export default function ProductGrid({ initialFilter = 'all' }: { initialFilter?:
   const filtered = active === 'all' ? products : products.filter(p => p.category === active)
 
   return (
-    <section className="px-10 py-16" style={{ background: '#F8FAFC' }}>
+    <section className="px-4 sm:px-10 py-10 sm:py-16" style={{ background: '#F8FAFC' }}>
       <div className="flex justify-between items-end mb-8 flex-wrap gap-4">
         <div>
           <p className="text-[11px] font-bold tracking-[1.5px] uppercase mb-1.5" style={{ color: '#1976D2' }}>Our catalogue</p>
-          <h2 className="text-[28px] font-extrabold" style={{ color: '#0D2B5E' }}>Hardware for every business</h2>
+          <h2 className="text-[24px] sm:text-[28px] font-extrabold" style={{ color: '#0D2B5E' }}>Hardware for every business</h2>
         </div>
         <div className="flex gap-2 flex-wrap">
           {filters.map(f => (
@@ -39,7 +39,7 @@ export default function ProductGrid({ initialFilter = 'all' }: { initialFilter?:
           ))}
         </div>
       </div>
-      <div className="grid grid-cols-4 gap-5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
         {filtered.map(p => <ProductCard key={p.id} product={p} />)}
       </div>
     </section>
