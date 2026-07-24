@@ -54,14 +54,14 @@ export default function ProductPage({ params }: { params: { id: string } }) {
                     Add to cart
                   </button>
                   
-                    href="https://competitve-components.myshopify.com/collections/all"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full py-3.5 text-sm font-bold text-white rounded-xl text-center transition-all"
-                    style={{ background: 'linear-gradient(135deg, #0D2B5E, #1565C0)' }}
-                  >
-                    Buy in our Shop
-                  </a>
+                  href="https://competitve-components.myshopify.com/collections/all"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="w-full py-3.5 text-[14px] font-bold text-white rounded-xl text-center transition-all"
+  style={{ background: 'linear-gradient(135deg, #0D2B5E, #1565C0)' }}
+>
+  Buy in our Shop
+</a>
                   <Link href="/contact" className="w-full py-3.5 text-sm font-bold rounded-xl text-center border-2 transition-all" style={{ color: '#0D2B5E', borderColor: '#0D2B5E' }}>
                     Request a quote
                   </Link>
