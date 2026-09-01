@@ -5,7 +5,7 @@ import { useState } from 'react'
 export default function ContactSection() {
   const [sent, setSent] = useState(false)
   const [loading, setLoading] = useState(false)
-  const [form, setForm] = useState({ name: '', company: '', email: '', phone: '', message: '', procurement: 'Outright purchase', devices: '1–10 devices' })
+  const [form, setForm] = useState({ name: '', company: '', email: '', phone: '', message: '', procurement: 'Outright purchase', devices: '1-10 devices' })
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) {
     setForm(f => ({ ...f, [e.target.name]: e.target.value }))
@@ -18,7 +18,7 @@ export default function ContactSection() {
       return
     }
     setLoading(true)
-    const subject = encodeURIComponent(`IT4Everyone Enquiry from ${form.name} — ${form.company}`)
+    const subject = encodeURIComponent(`IT4Everyone Enquiry from ${form.name} - ${form.company}`)
     const body = encodeURIComponent(
       `Name: ${form.name}\nCompany: ${form.company}\nEmail: ${form.email}\nPhone: ${form.phone}\nProcurement: ${form.procurement}\nDevices: ${form.devices}\n\nMessage:\n${form.message}`
     )
@@ -27,12 +27,12 @@ export default function ContactSection() {
   }
 
   return (
-    <section id="contact" className="px-10 py-14 bg-white">
+    <section id="contact" className="px-4 sm:px-10 py-10 sm:py-14 bg-white">
       <div className="mb-8">
         <p className="text-[11px] font-bold text-blue tracking-[1.5px] uppercase mb-1.5">Get in touch</p>
-        <h2 className="text-[26px] font-extrabold text-navy">Request a tailored proposal</h2>
+        <h2 className="text-[22px] sm:text-[26px] font-extrabold text-navy">Request a tailored proposal</h2>
       </div>
-      <div className="grid grid-cols-[1fr_1.5fr] gap-12">
+      <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.5fr] gap-8 sm:gap-12">
         <div className="flex flex-col gap-5">
           <p className="text-[14px] text-slate-500 leading-[1.75]">
             Tell us about your technology roadmap and we&apos;ll prepare a fully customised procurement proposal — from a single device to a full enterprise rollout.
@@ -54,7 +54,7 @@ export default function ContactSection() {
         </div>
 
         {sent ? (
-          <div className="flex items-center justify-center">
+          <div className="flex items-center justify-center py-10">
             <div className="text-center">
               <div className="text-5xl mb-4">✅</div>
               <h3 className="text-xl font-extrabold text-navy mb-2">Enquiry sent!</h3>
@@ -63,28 +63,28 @@ export default function ContactSection() {
           </div>
         ) : (
           <div className="flex flex-col gap-2.5">
-            <div className="grid grid-cols-2 gap-2.5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
               <input name="name" required placeholder="Your name" value={form.name} onChange={handleChange} className="border-[1.5px] border-gray-200 rounded-lg px-3.5 py-2.5 text-[13.5px] text-navy outline-none focus:border-blue-mid" />
               <input name="company" placeholder="Company name" value={form.company} onChange={handleChange} className="border-[1.5px] border-gray-200 rounded-lg px-3.5 py-2.5 text-[13.5px] text-navy outline-none focus:border-blue-mid" />
               <input name="email" type="email" required placeholder="Email address" value={form.email} onChange={handleChange} className="border-[1.5px] border-gray-200 rounded-lg px-3.5 py-2.5 text-[13.5px] text-navy outline-none focus:border-blue-mid" />
               <input name="phone" placeholder="Phone number" value={form.phone} onChange={handleChange} className="border-[1.5px] border-gray-200 rounded-lg px-3.5 py-2.5 text-[13.5px] text-navy outline-none focus:border-blue-mid" />
             </div>
             <textarea name="message" rows={3} required placeholder="What hardware are you looking to procure? How many devices?" value={form.message} onChange={handleChange} className="border-[1.5px] border-gray-200 rounded-lg px-3.5 py-2.5 text-[13.5px] text-navy outline-none focus:border-blue-mid resize-none" />
-            <div className="grid grid-cols-2 gap-2.5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
               <select name="procurement" value={form.procurement} onChange={handleChange} className="border-[1.5px] border-gray-200 rounded-lg px-3.5 py-2.5 text-[13.5px] text-navy outline-none bg-white">
                 <option>Outright purchase</option>
                 <option>Leasing / subscription</option>
                 <option>Flexible model</option>
               </select>
               <select name="devices" value={form.devices} onChange={handleChange} className="border-[1.5px] border-gray-200 rounded-lg px-3.5 py-2.5 text-[13.5px] text-navy outline-none bg-white">
-                <option>1–10 devices</option>
-                <option>11–50 devices</option>
-                <option>51–200 devices</option>
+                <option>1-10 devices</option>
+                <option>11-50 devices</option>
+                <option>51-200 devices</option>
                 <option>200+ devices</option>
               </select>
             </div>
             <button onClick={handleSubmit} disabled={loading} className="bg-navy hover:bg-blue text-white font-bold py-3.5 rounded-lg text-[14px] transition-colors disabled:opacity-60 mt-1">
-              {loading ? 'Opening email…' : 'Send enquiry — get a proposal →'}
+              {loading ? 'Opening email...' : 'Send enquiry - get a proposal'}
             </button>
           </div>
         )}
