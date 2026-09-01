@@ -4,8 +4,8 @@ import Logo from './Logo'
 export default function Footer() {
   return (
     <footer style={{ background: '#050E22' }}>
-      <div className="px-10 py-12 grid grid-cols-4 gap-8">
-        <div className="col-span-1">
+      <div className="px-6 sm:px-10 py-10 sm:py-12 grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="col-span-2 sm:col-span-2 lg:col-span-1">
           <div className="mb-4">
             <Logo />
           </div>
@@ -42,9 +42,9 @@ export default function Footer() {
           </div>
         </div>
       </div>
-      <div className="px-10 py-4 flex justify-between items-center flex-wrap gap-3" style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
-        <p className="text-[12px]" style={{ color: '#1A2F4A' }}>© 2025 IT4Everyone Ltd · Registered in England & Wales</p>
-        <div className="flex gap-5">
+      <div className="px-6 sm:px-10 py-4 flex flex-col sm:flex-row justify-between items-center gap-3" style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+        <p className="text-[12px] text-center sm:text-left" style={{ color: '#1A2F4A' }}>© 2025 IT4Everyone Ltd · Registered in England &amp; Wales</p>
+        <div className="flex flex-wrap justify-center gap-4 sm:gap-5">
           {['Privacy policy', 'Terms & conditions', 'Cookie policy', 'Sitemap'].map(l => (
             <Link key={l} href="#" className="text-[12px] hover:text-slate-500 transition-colors" style={{ color: '#2D4A6E' }}>{l}</Link>
           ))}
