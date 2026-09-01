@@ -54,7 +54,7 @@ export default function ProductPage({ params }: { params: { id: string } }) {
                     Add to cart
                   </button>
                   
-                                    
+                    <a                
                     href="https://competitve-components.myshopify.com/collections/all"
                     target="_blank"
                     rel="noopener noreferrer"
