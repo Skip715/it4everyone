@@ -18,7 +18,7 @@ export default function ContactPage() {
           <p className="text-[11px] font-bold tracking-[1.5px] uppercase mb-1.5" style={{ color: '#1976D2' }}>Documents</p>
           <h2 className="text-[26px] font-extrabold" style={{ color: '#0D2B5E' }}>Download our forms</h2>
           <p className="text-[14px] mt-2 max-w-lg leading-[1.75]" style={{ color: '#546E7A' }}>
-            Download, complete and return the relevant form to get started with IT4Everyone.
+            Download, complete and return the relevant form, or fill it in online below.
           </p>
         </div>
         <div className="grid grid-cols-3 gap-5">
@@ -28,34 +28,48 @@ export default function ContactPage() {
               desc: 'Open a credit account with IT4Everyone. Complete and return with supporting documents.',
               icon: '📋',
               file: '/IT4Everyone-New-Customer-Application.pdf',
+              applyLink: '/apply/new-customer',
             },
             {
               title: 'New Supplier Application',
               desc: 'Apply to become a supplier to IT4Everyone. Complete all sections and return with required documentation.',
               icon: '🤝',
               file: '/IT4Everyone-New-Supplier-Application.pdf',
+              applyLink: '/apply/new-supplier',
             },
             {
               title: 'Terms & Conditions',
               desc: 'Our standard terms and conditions of sale. Please read carefully before placing an order.',
               icon: '📄',
               file: '/IT4Everyone-Terms-and-Conditions.pdf',
+              applyLink: null,
             },
-          ].map(({ title, desc, icon, file }) => (
+          ].map(({ title, desc, icon, file, applyLink }) => (
             <div key={title} className="bg-white rounded-2xl p-7 flex flex-col gap-4" style={{ border: '1px solid #E8EDF5', boxShadow: '0 2px 8px rgba(13,43,94,0.06)' }}>
               <div className="text-4xl">{icon}</div>
               <div>
                 <h3 className="text-[15px] font-extrabold mb-2" style={{ color: '#0D2B5E' }}>{title}</h3>
                 <p className="text-[13px] leading-[1.65]" style={{ color: '#546E7A' }}>{desc}</p>
               </div>
-              <a
-                href={file}
-                download
-                className="mt-auto inline-flex items-center gap-2 px-5 py-2.5 text-[13px] font-bold text-white rounded-lg transition-all"
-                style={{ background: 'linear-gradient(135deg, #1565C0, #2196F3)' }}
-              >
-                ⬇ Download PDF
-              </a>
+              <div className="mt-auto flex flex-col gap-2.5">
+                {applyLink && (
+                  
+                    href={applyLink}
+                    className="inline-flex items-center justify-center gap-2 px-5 py-2.5 text-[13px] font-bold text-white rounded-lg transition-all"
+                    style={{ background: 'linear-gradient(135deg, #0D2B5E, #1565C0)' }}
+                  >
+                    ✎ Fill in online
+                  </a>
+                )}
+                
+                  href={file}
+                  download
+                  className="inline-flex items-center justify-center gap-2 px-5 py-2.5 text-[13px] font-bold rounded-lg transition-all"
+                  style={applyLink ? { border: '1.5px solid #1565C0', color: '#1565C0' } : { background: 'linear-gradient(135deg, #1565C0, #2196F3)', color: '#fff' }}
+                >
+                  ⬇ Download PDF
+                </a>
+              </div>
             </div>
           ))}
         </div>
