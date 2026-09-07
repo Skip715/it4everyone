@@ -11,19 +11,40 @@ export default function ContactSection() {
     setForm(f => ({ ...f, [e.target.name]: e.target.value }))
   }
 
-  function handleSubmit(e: React.MouseEvent) {
+  async function handleSubmit(e: React.MouseEvent) {
     e.preventDefault()
     if (!form.name || !form.email || !form.message) {
       alert('Please fill in your name, email and message.')
       return
     }
     setLoading(true)
-    const subject = encodeURIComponent(`IT4Everyone Enquiry from ${form.name} - ${form.company}`)
-    const body = encodeURIComponent(
-      `Name: ${form.name}\nCompany: ${form.company}\nEmail: ${form.email}\nPhone: ${form.phone}\nProcurement: ${form.procurement}\nDevices: ${form.devices}\n\nMessage:\n${form.message}`
-    )
-    window.location.href = `mailto:info@it4eo.co.uk?subject=${subject}&body=${body}`
-    setTimeout(() => { setSent(true); setLoading(false) }, 1000)
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          access_key: '3961e3d9-4ace-4a7a-b7bf-846903b790ee',
+          subject: `IT4Everyone Enquiry from ${form.name} - ${form.company}`,
+          name: form.name,
+          company: form.company,
+          email: form.email,
+          phone: form.phone,
+          procurement: form.procurement,
+          devices: form.devices,
+          message: form.message,
+        }),
+      })
+      const result = await res.json()
+      if (result.success) {
+        setSent(true)
+      } else {
+        alert('Something went wrong sending your enquiry. Please try again or email us directly.')
+      }
+    } catch {
+      alert('Something went wrong sending your enquiry. Please try again or email us directly.')
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -40,7 +61,7 @@ export default function ContactSection() {
           {[
             { label: 'Address', value: 'Regus The Gatehouse, Gatehouse Way, Aylesbury, Buckinghamshire', icon: '📍' },
             { label: 'Phone', value: '01296 816012 · 07518 577981', icon: '📞' },
-            { label: 'Email', value: 'info@it4eo.co.uk', icon: '✉️' },
+            { label: 'Email', value: 'sraper@it4eo.co.uk', icon: '✉️' },
             { label: 'Website', value: 'www.it4eo.co.uk', icon: '🌐' },
           ].map(({ label, value, icon }) => (
             <div key={label} className="flex gap-3.5 items-start">
@@ -84,7 +105,7 @@ export default function ContactSection() {
               </select>
             </div>
             <button onClick={handleSubmit} disabled={loading} className="bg-navy hover:bg-blue text-white font-bold py-3.5 rounded-lg text-[14px] transition-colors disabled:opacity-60 mt-1">
-              {loading ? 'Opening email...' : 'Send enquiry - get a proposal'}
+              {loading ? 'Sending...' : 'Send enquiry - get a proposal'}
             </button>
           </div>
         )}
